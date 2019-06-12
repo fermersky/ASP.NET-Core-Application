@@ -1,16 +1,16 @@
-﻿@model Authors
+﻿@model List<Authors>
 
 @{
-    var author = Model as Authors;
+    Layout = "_Layout";
+    var authors = Model as List<Authors>;
+    ViewBag.Title = "MainPage";
 }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Document</title>
-</head>
-<body>
-    <p>@author.FirstName</p>
-    <p>@author.LastName</p>
-</body>
-</html>
+
+@foreach (var aut in authors)
+{
+    <p>@aut.FirstName @aut.LastName</p>
+    <a href="/home/details/@aut.IdAuthor">View</a>
+}
+
 

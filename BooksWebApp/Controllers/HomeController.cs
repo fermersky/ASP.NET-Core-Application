@@ -11,10 +11,27 @@ namespace BooksWebApp.Controllers
     {
         private PublishingHouseContext context = new PublishingHouseContext();
 
-        public IActionResult Index()
+        public IActionResult Index() // main page
         {
-            var author = context.Authors.FirstOrDefault(a => a.IdAuthor == 1);
-            return View(author);
+            var authors = context.Authors.ToList();
+            return View(authors);
+        }
+
+        public IActionResult Details(int? authorId)
+        {
+            return View();
+        }
+
+        public IActionResult Create() // add author page
+        {
+            return View();
+        }
+
+        public RedirectResult AddAuthor(Authors aut) // add author page
+        {
+            context.Authors.Add(aut);
+            context.SaveChanges();
+            return RedirectPermanent("index");
         }
     }
 }
