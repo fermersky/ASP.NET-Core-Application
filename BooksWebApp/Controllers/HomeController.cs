@@ -1,4 +1,5 @@
 ﻿using BooksWebApp.Models;
+using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,17 @@ namespace BooksWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private PublishingHouseContext context = new PublishingHouseContext();
+        private DataManager _dataManager;
+        
+
+        public HomeController(DataManager dataManager)
+        {
+            _dataManager = dataManager;
+        }
 
         public IActionResult Index() // main page
         {
-            var authors = context.Authors.ToList();
+            var authors = _dataManager.AuthorRepository.GetAllAuthors();
             return View(authors);
         }
 
@@ -29,8 +36,7 @@ namespace BooksWebApp.Controllers
 
         public RedirectResult AddAuthor(Authors aut) // add author page
         {
-            context.Authors.Add(aut);
-            context.SaveChanges();
+            
             return RedirectPermanent("index");
         }
     }

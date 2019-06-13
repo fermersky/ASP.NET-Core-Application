@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BooksWebApp.Models;
+using BusinessLayer;
+using BusinessLayer.Implements;
+using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,11 +25,17 @@ namespace BooksWebApp
         {
             _config = config;
         }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddDbContext<PublishingHouseContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksConn")));
+
+            services.AddTransient<IBookRepository, SqlBookRepository>();
+            services.AddTransient<IAuthorRepository, SqlAuthorRepository>();
+            services.AddTransient<DataManager>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

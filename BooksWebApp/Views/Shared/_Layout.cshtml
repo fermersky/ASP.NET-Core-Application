@@ -2,11 +2,24 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i|Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="main">
+        <div class="left_side_bar">
+            <h1>Book Shop</h1>
 
-
+            <ul class="nav">
+                <li><a asp-action="index" asp-controller="home">Home</a></li>
+                <li><a asp-action="index" asp-controller="home">Books</a></li>
+                <li><a asp-action="index" asp-controller="home">About</a></li>
+                <li><a asp-action="index" asp-controller="home">Create</a></li>
+            </ul>
+        </div>
+        <div class="site_content">
+            @RenderBody()
+        </div>
+    </div>
 </body>
 </html>
