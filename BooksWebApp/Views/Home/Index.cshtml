@@ -1,16 +1,15 @@
-﻿@model List<Authors>
+﻿@model List<Books>
 
 @{
     Layout = "_Layout";
-    var authors = Model as List<Authors>;
     ViewBag.Title = "MainPage";
 }
 
 
-@foreach (var aut in authors)
-{
-    <p>@aut.FirstName @aut.LastName</p>
-    <a href="/home/details/@aut.IdAuthor">View</a>
+@foreach (var book in Model)
+{   
+    <p>@book.NameBook</p>
+    <a href="/home/list?genre=@book.IdThemeNavigation.NameTheme">View</a>
 }
 
 

@@ -11,7 +11,7 @@ namespace BooksWebApp.Controllers
     public class HomeController : Controller
     {
         private DataManager _dataManager;
-        
+
 
         public HomeController(DataManager dataManager)
         {
@@ -20,8 +20,8 @@ namespace BooksWebApp.Controllers
 
         public IActionResult Index() // main page
         {
-            var authors = _dataManager.AuthorRepository.GetAllAuthors();
-            return View(authors);
+            var model = _dataManager.BookRepository.GetAllBooks();
+            return View(model);
         }
 
         public IActionResult Details(int? authorId)
@@ -34,9 +34,18 @@ namespace BooksWebApp.Controllers
             return View();
         }
 
+        public IActionResult List(string genre)
+        {
+            var model = _dataManager.BookRepository
+                .GetAllBooks()
+                .Where(b => b.IdThemeNavigation.NameTheme == genre)
+                .ToList();
+
+            return View(model);
+        }
+
         public RedirectResult AddAuthor(Authors aut) // add author page
         {
-            
             return RedirectPermanent("index");
         }
     }

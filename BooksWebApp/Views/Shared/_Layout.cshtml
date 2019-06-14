@@ -4,6 +4,7 @@
     <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i|Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/icomoon/style.css">
 </head>
 <body>
     <div class="main">
@@ -14,10 +15,29 @@
                 <li><a asp-action="index" asp-controller="home">Home</a></li>
                 <li><a asp-action="index" asp-controller="home">Books</a></li>
                 <li><a asp-action="index" asp-controller="home">About</a></li>
-                <li><a asp-action="index" asp-controller="home">Create</a></li>
+                <li><a asp-action="index" asp-controller="home">Create</a></li>      
             </ul>
+
+             <div class="copyright">
+                <p>© Copyright ©2019 All rights</p>
+                <p>Made with ❤️ and ASP.NET Core by Daniel </p>
+
+                <ul class="copyright__social_links">
+                    <li><a href=""><i class="icon-instagram"></i></a></li>
+                    <li><a href=""><i class="icon-github"></i></a></li>
+                    <li><a href=""><i class="icon-linkedin2"></i></a></li>
+                    <li><a href=""><i class="icon-telegram"></i></a></li>
+                </ul>
+            </div>
         </div>
         <div class="site_content">
+            <div class="wall">
+                <div class="wall__desc">
+                    <p>From Drama to Sci-Fi</p>
+                    <h2>What are you waiting for?</h2>
+                    <h3>Reading of books increase information sensitivity and rise intelligence availability</h3>
+                </div>
+            </div>
             @RenderBody()
         </div>
     </div>

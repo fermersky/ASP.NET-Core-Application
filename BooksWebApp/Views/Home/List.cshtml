@@ -1,0 +1,13 @@
+@model List<Books>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "MainPage";
+}
+
+
+@foreach (Books book in Model)
+{
+    <p>@book.NameBook</p>
+    <p>@book.IdThemeNavigation.NameTheme</p>
+}

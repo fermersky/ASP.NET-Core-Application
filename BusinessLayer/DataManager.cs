@@ -19,7 +19,5 @@ namespace BusinessLayer
             _bookRepository = bookRepository;
             _authorRepository = authorRepository;
         }
-
-        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BooksWebApp.Models;
 using BusinessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace BusinessLayer.Implements
         {
             context.Books.Add(book);
             context.SaveChanges();
+
             return book;
         }
 
@@ -39,12 +41,18 @@ namespace BusinessLayer.Implements
 
         public List<Books> GetAllBooks()
         {
-            return context.Books.ToList();
+            return context.Books
+                .Include("IdThemeNavigation")
+                .Include("IdAuthorNavigation")
+                .ToList();
         }
 
         public Books GetBookById(int id)
         {
-            return context.Books.FirstOrDefault(b => b.IdBook == id);
+            return context.Books
+                .Include("IdThemeNavigation")
+                .Include("IdAuthorNavigation")
+                .FirstOrDefault(b => b.IdBook == id);
         }
 
         public Books UpdateBook(Books newBook, Books oldBook)
