@@ -5,11 +5,51 @@
     ViewBag.Title = "MainPage";
 }
 
+<div class="wall">
+    <div class="wall__desc">
+        <p>From Drama to Sci-Fi</p>
+        <h2>What are you waiting for?</h2>
+        <h3>Reading of books increase information sensitivity and rise intelligence availability</h3>
+    </div>
+</div>
 
-@foreach (var book in Model)
+<div class="flex_container">
+    <div class="flex_item--half">
+        <img src="../images/bible.jpg" alt="">
+        <div class="desc">
+            <p class="desc__tag">Chronicles</p>
+            <p class="desc__title">Historically accurate books</p>
+            <p class="desc__summary">If you decided to read historical book you must be make sure this book is trustworthy and accurate. Our books are such!</p>
+        </div>
+    </div>
+    <div class="flex_item--half">
+        <img src="../images/lib.jpg" alt="">
+        <div class="desc">
+            <p class="desc__tag"></p>
+            <p class="desc__title" style="margin-top: 47px">Quick access to the libs</p>
+            <p class="desc__summary">Instead of wasting your all the free time in street library you can go to the our online libary and take it easy</p>
+        </div>
+    </div>
+
+    <div class="flex_item--full">
+        <img src="../images/colbooks.jpg" alt="">
+        <div class="desc">
+            <p class="desc__tag">Open. Read. Dream.</p>
+            <p class="desc__title">I wish you good reading!</p>
+            <p class="desc__summary">When I read books I dream what I would be do in place of the main character. It helps to feel the life of the hero truly and completely immersed in the plot</p>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link rel="stylesheet" href="~/css/index.css">
+}
+
+
+<!-- @foreach (var book in Model)
 {   
     <p>@book.NameBook</p>
     <a href="/home/list?genre=@book.IdThemeNavigation.NameTheme">View</a>
-}
+} -->
 
 

@@ -24,6 +24,16 @@ namespace BooksWebApp.Controllers
             return View(model);
         }
 
+        public IActionResult Books()
+        {
+            var model = _dataManager.BookRepository
+                .GetAllBooks()
+                .Take(6)
+                .ToList();
+
+            return View(model);
+        }
+
         public IActionResult Details(int? authorId)
         {
             return View();
