@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PresentationLayer;
 
 namespace BooksWebApp
 {
@@ -34,7 +35,11 @@ namespace BooksWebApp
 
             services.AddTransient<IBookRepository, SqlBookRepository>();
             services.AddTransient<IAuthorRepository, SqlAuthorRepository>();
+            services.AddTransient<IThemeRepository, SqlThemeRepository>();
+
             services.AddTransient<DataManager>();
+            services.AddTransient<ServicesManager>();
+
             services.AddMvc();
         }
 
@@ -45,6 +50,12 @@ namespace BooksWebApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
+            }
+
 
             app.UseStaticFiles();
             app.UseMvc(
@@ -52,10 +63,10 @@ namespace BooksWebApp
                     name: "default", template: "{controller=Home}/{action=Index}/{id?}"
             ));
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }

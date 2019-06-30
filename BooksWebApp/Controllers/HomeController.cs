@@ -5,32 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PresentationLayer;
+using PresentationLayer.Models;
 
 namespace BooksWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private DataManager _dataManager;
+        private ServicesManager _servicesManager;
 
 
-        public HomeController(DataManager dataManager)
+        public HomeController(ServicesManager servicesManager)
         {
-            _dataManager = dataManager;
+            _servicesManager = servicesManager;
         }
 
         public IActionResult Index() // main page
         {
-            var model = _dataManager.BookRepository.GetAllBooks();
-            return View(model);
+            return View();
         }
 
         public IActionResult Books()
         {
-            var model = _dataManager.BookRepository
-                .GetAllBooks()
-                .Take(6)
-                .ToList();
-
+            var model = _servicesManager.BooksService.GetBooksList();
             return View(model);
         }
 
@@ -39,24 +36,31 @@ namespace BooksWebApp.Controllers
             return View();
         }
 
-        public IActionResult Create() // add author page
+        public IActionResult List(string genre)
+        {
+            //var model = _dataManager.BookRepository
+            //    .GetAllBooks()
+            //    .Where(b => b.IdThemeNavigation.NameTheme == genre)
+            //    .ToList();
+
+            //return View(model);
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult List(string genre)
+        [HttpPost]
+        public IActionResult Create(BooksEditModel book)
         {
-            var model = _dataManager.BookRepository
-                .GetAllBooks()
-                .Where(b => b.IdThemeNavigation.NameTheme == genre)
-                .ToList();
-
-            return View(model);
-        }
-
-        public RedirectResult AddAuthor(Authors aut) // add author page
-        {
-            return RedirectPermanent("index");
+            book.DateOfPublish = DateTime.Now;
+            
+            _servicesManager.BooksService.AddBookToDataBase(book);
+            return RedirectPermanent("/home/index");
         }
     }
 }

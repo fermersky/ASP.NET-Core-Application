@@ -1,13 +1,27 @@
-﻿<!doctype html>
-<html>
-<head>
-    <title>Document</title>
-</head>
-<body>
-    <form action="/home/AddAuthor" method="post">
-        <input type="text" name="FirstName" value="" />
-        <input type="text" name="LastName" value="" />
-        <input type="submit" name="name" value="Add author" />
-    </form>
-</body>
-</html>
+﻿@inject IAuthorRepository authorRepo;
+@inject IThemeRepository themeRepo;
+
+@{ 
+    Layout = "_Layout";
+    ViewBag.Title = "Create new book";
+}
+
+<form asp-controller="home" asp-action="create" method="post">
+    <input type="text" name="NameBook" value="" placeholder="Book Title" /><br />
+    <input type="text" name="Price" value="" placeholder="Price ($)" /><br />
+    <select name="AuthorId">
+        @foreach (Authors author in authorRepo.GetAllAuthors())
+        {
+            <option name="AuthorId" value="@author.IdAuthor">@author.FirstName @author.LastName</option>
+        }
+    </select>
+    <select name="ThemeId">
+        @foreach (Themes theme in themeRepo.GetAllThemes())
+        {
+            <option name="ThemeId" value="@theme.IdTheme">@theme.NameTheme</option>
+        }
+    </select>
+    <input type="text" name="Pages" value="" placeholder="Pages Count" />
+
+    <input type="submit" name="name" value="Create" />
+</form>

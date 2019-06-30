@@ -1,4 +1,6 @@
-@model List<Books>
+@model List<BooksViewModel>
+
+
 
 @{
     Layout = "_Layout";
@@ -16,13 +18,13 @@
     @foreach (var book in Model)
     {
         <div class="book_card">
-            @{ViewBag.path = "/images/authors/" + book.IdAuthorNavigation.FirstName + "_" + book.IdAuthorNavigation.LastName + ".jpg";}
+            @{ViewBag.path = "/images/authors/" + book.Author.FirstName + "_" + book.Author.LastName + ".jpg";}
             <img src=@ViewBag.path class="book_card__bg">
             <div class="book_card__desc">
-                <p class="book_card__genre">@book.IdThemeNavigation.NameTheme</p>
+                <p class="book_card__genre">@book.Theme.NameTheme</p>
                 <h3 class="book_card__title"><span>|</span>@book.NameBook</h3>
-                <p class="book_card__author">@book.IdAuthorNavigation.FirstName @book.IdAuthorNavigation.LastName</p>
-                <a class="book_card__buylink" asp-controller="home" asp-action="details" asp-route-id="1">View More</a>
+                <p class="book_card__author">@book.Author.FirstName @book.Author.LastName</p>
+                <a class="book_card__buylink" asp-controller="home" asp-action="details" asp-route-id=@book.Id>View More</a>
             </div>
         </div>
     }
