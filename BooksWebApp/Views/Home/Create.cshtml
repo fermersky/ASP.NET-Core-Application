@@ -1,27 +1,44 @@
 ﻿@inject IAuthorRepository authorRepo;
 @inject IThemeRepository themeRepo;
 
-@{ 
+@model BooksEditModel
+
+@{
     Layout = "_Layout";
     ViewBag.Title = "Create new book";
 }
 
-<form asp-controller="home" asp-action="create" method="post">
-    <input type="text" name="NameBook" value="" placeholder="Book Title" /><br />
-    <input type="text" name="Price" value="" placeholder="Price ($)" /><br />
-    <select name="AuthorId">
-        @foreach (Authors author in authorRepo.GetAllAuthors())
-        {
-            <option name="AuthorId" value="@author.IdAuthor">@author.FirstName @author.LastName</option>
-        }
-    </select>
-    <select name="ThemeId">
-        @foreach (Themes theme in themeRepo.GetAllThemes())
-        {
-            <option name="ThemeId" value="@theme.IdTheme">@theme.NameTheme</option>
-        }
-    </select>
-    <input type="text" name="Pages" value="" placeholder="Pages Count" />
+<div class="books_page_info">
+    <div class="title_bg"></div>
+    <h1 class="page_title">Create new book and add it!</h1>
+    <p class="books_desc">Our readers just waiting for this book. Hurry Up!</p>
+</div>
 
-    <input type="submit" name="name" value="Create" />
-</form>
+
+<section class="section_adding">
+    <form asp-controller="home" asp-action="create" method="post">
+        <div class="input_container">
+            <input class="input_field" type="text" asp-for="NameBook" value="" placeholder="Book Title" /><br />
+            <i class="fas fa-bookmark required_mark"></i>
+        </div>
+        <input type="text" asp-for="Price" value="" placeholder="Price ($)" /><br />
+        <select asp-for="AuthorId">
+            @foreach (Authors author in authorRepo.GetAllAuthors())
+            {
+                <option name="AuthorId" value="@author.IdAuthor">@author.FirstName @author.LastName</option>
+            }
+        </select>
+        <select asp-for="ThemeId">
+            @foreach (Themes theme in themeRepo.GetAllThemes())
+            {
+                <option name="ThemeId" value="@theme.IdTheme">@theme.NameTheme</option>
+            }
+        </select>
+        <input type="text" asp-for="Pages" value="" placeholder="Pages Count" />
+        <input type="submit" name="name" value="Create" />
+    </form>
+</section>
+
+@section styles {
+    <link href="~/css/create.css" rel="stylesheet" />
+}

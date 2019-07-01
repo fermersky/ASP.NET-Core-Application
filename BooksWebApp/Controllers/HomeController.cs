@@ -20,22 +20,26 @@ namespace BooksWebApp.Controllers
             _servicesManager = servicesManager;
         }
 
+        [HttpGet]
         public IActionResult Index() // main page
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Books()
         {
             var model = _servicesManager.BooksService.GetBooksList();
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult Details(int? authorId)
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult List(string genre)
         {
             //var model = _dataManager.BookRepository
@@ -57,9 +61,8 @@ namespace BooksWebApp.Controllers
         [HttpPost]
         public IActionResult Create(BooksEditModel book)
         {
-            book.DateOfPublish = DateTime.Now;
-            
             _servicesManager.BooksService.AddBookToDataBase(book);
+
             return RedirectPermanent("/home/index");
         }
     }

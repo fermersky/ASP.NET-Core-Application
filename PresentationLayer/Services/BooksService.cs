@@ -2,6 +2,7 @@ using BusinessLayer;
 using PresentationLayer.Models;
 using BooksWebApp.Models;
 using System.Collections.Generic;
+using System;
 
 namespace PresentationLayer.Services
 {
@@ -41,7 +42,8 @@ namespace PresentationLayer.Services
                 Id = book.IdBook,
                 NameBook = book.NameBook,
                 Author = book.IdAuthorNavigation,
-                Theme = book.IdThemeNavigation
+                Theme = book.IdThemeNavigation,
+                
             };
 
             return bookViewModel;
@@ -56,7 +58,7 @@ namespace PresentationLayer.Services
                 IdAuthor = editModel.AuthorId,
                 Pages = editModel.Pages,
                 Price = editModel.Price,
-                DateOfPublish = editModel.DateOfPublish
+                DateOfPublish = DateTime.Now,
             };
 
             _dataManager.BookRepository.AddBook(book);

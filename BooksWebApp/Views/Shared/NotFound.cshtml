@@ -1,1 +1,35 @@
-﻿<h1>@ViewBag.ErrorMessage</h1>
+﻿@{ 
+    Layout = "_Layout";
+    ViewBag.Title = "404";
+}
+
+<style>
+    .error_container {
+        height: 100vh;
+        padding-top: 60px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .error_container img {
+        max-width: 50%;
+        height: auto;
+    }
+
+    .books_page_info {
+        background: #fff;
+    }
+</style>
+
+<div class="error_container">
+    <img src="~/images/404.png" />
+    <div class="books_page_info">
+        <div class="title_bg"></div>
+        <h1 class="page_title">Page could not be found!</h1>
+        <p class="books_desc">Check the <span class="mark">URL</span> or use the <span class="mark">site navigation</span></p>
+    </div>
+</div>
+

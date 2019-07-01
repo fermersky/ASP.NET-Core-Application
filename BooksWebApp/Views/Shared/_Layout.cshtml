@@ -4,14 +4,15 @@
     <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i|Pacifico&display=swap&subset=cyrillic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,200i,300,400,400i,600,700,700i,800,800i,900,900i&display=swap&subset=cyrillic-ext" rel="stylesheet">
-    <link href="~/css/main.css" rel="stylesheet" />
-    
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="~/icomoon/style.css">
-    @RenderSection("styles", required: false)
 
+    @* Font Awesome *@
+    <script src="https://kit.fontawesome.com/0650b08837.js"></script>
+
+    <link rel="stylesheet" href="~/icomoon/style.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="main">
@@ -30,10 +31,10 @@
                 <p>Made with ❤️ and ASP.NET Core by Daniel </p>
 
                 <ul class="copyright__social_links">
-                    <li><a href=""><i class="icon-instagram"></i></a></li>
-                    <li><a href=""><i class="icon-github"></i></a></li>
-                    <li><a href=""><i class="icon-linkedin2"></i></a></li>
-                    <li><a href=""><i class="icon-telegram"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/d.srp/"><i class="icon-instagram"></i></a></li>
+                    <li><a target="_blank" href="https://github.com/fermersky"><i class="icon-github"></i></a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/danielskrypnik/"><i class="icon-linkedin2"></i></a></li>
+                    <li><a target="_blank" href="https://t.me/dskrypnik"><i class="icon-telegram"></i></a></li>
                 </ul>
             </div>
         </aside>
