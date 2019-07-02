@@ -10,3 +10,6 @@ In `HomeController` class I use `servicesManager` to manipulate with data. `Serv
 
 In Startup.cs I use services collection to set dependencies between Interfaces and Implements
 
+![alt text](https://i.ibb.co/G72SdMp/q.png)
+
+
